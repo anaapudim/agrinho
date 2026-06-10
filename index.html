@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agrofloresta Brasil | Agro Forte, Futuro Sustentável</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & VARS ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde-escuro: #1a3a2a;
+      --verde-medio: #2d6a4f;
+      --verde-claro: #52b788;
+      --verde-menta: #95d5b2;
+      --amarelo-terra: #e9c46a;
+      --laranja-colheita: #f4a261;
+      --marrom-solo: #7b4f2e;
+      --creme: #fef9f0;
+      --branco: #ffffff;
+      --texto-escuro: #1a2618;
+      --texto-medio: #3d5a40;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--creme);
+      color: var(--texto-escuro);
+      overflow-x: hidden;
+    }
+
+    /* ===== HEADER / NAV ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(26, 58, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(149, 213, 178, 0.2);
+      transition: background 0.3s;
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 0.6rem;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: var(--verde-claro);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--verde-menta);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    nav { display: flex; gap: 2rem; }
+    nav a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--verde-menta); }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--verde-escuro);
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(45,106,79,0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(82,183,136,0.15) 0%, transparent 60%),
+        var(--verde-escuro);
+    }
+
+    /* Floating leaves decoration */
+    .leaf {
+      position: absolute;
+      opacity: 0.07;
+      font-size: 6rem;
+      animation: floatLeaf 8s ease-in-out infinite;
+    }
+    .leaf:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+    .leaf:nth-child(2) { top: 60%; right: 8%; animation-delay: 2s; font-size: 10rem; }
+    .leaf:nth-child(3) { top: 30%; right: 25%; animation-delay: 4s; font-size: 4rem; }
+    .leaf:nth-child(4) { bottom: 15%; left: 20%; animation-delay: 1s; font-size: 8rem; }
+
+    @keyframes floatLeaf {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(8deg); }
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 8rem 2.5rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(149,213,178,0.12);
+      border: 1px solid rgba(149,213,178,0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      color: var(--verde-menta);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--branco);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+
+    .hero h1 span {
+      color: var(--verde-menta);
+      font-style: italic;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+
+    .btn-primary {
+      padding: 0.9rem 2rem;
+      background: var(--verde-claro);
+      color: var(--verde-escuro);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--verde-menta); transform: translateY(-2px); }
+
+    .btn-outline {
+      padding: 0.9rem 2rem;
+      background: transparent;
+      color: var(--verde-menta);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1.5px solid rgba(149,213,178,0.5);
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--verde-menta); color: var(--branco); transform: translateY(-2px); }
+
+    /* Hero stats */
+    .hero-visual {
+      opacity: 0;
+      animation: fadeIn 1s 1s forwards;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(149,213,178,0.15);
+      border-radius: 16px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .stat-card:hover { border-color: rgba(149,213,178,0.4); transform: translateY(-4px); }
+    .stat-card:first-child { grid-column: 1/-1; }
+
+    .stat-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--verde-claro);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.3rem;
+      line-height: 1.4;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ===== SECTION COMMONS ===== */
+    section {
+      padding: 6rem 2.5rem;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--verde-medio);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--texto-escuro);
+      margin-bottom: 1.2rem;
+    }
+    .section-title em {
+      color: var(--verde-medio);
+      font-style: italic;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--texto-medio);
+      max-width: 640px;
+    }
+
+    /* ===== O QUE É AGROFLORESTA ===== */
+    #o-que-e {
+      background: var(--branco);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .tree-diagram {
+      width: 100%;
+      max-width: 460px;
+      aspect-ratio: 1;
+      position: relative;
+    }
+
+    .tree-svg { width: 100%; height: 100%; }
+
+    .about-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: var(--verde-escuro);
+    }
+
+    .about-text p {
+      line-height: 1.8;
+      color: var(--texto-medio);
+      margin-bottom: 1.2rem;
+    }
+
+    .tag-list {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+    .tag {
+      background: rgba(82,183,136,0.12);
+      border: 1px solid rgba(82,183,136,0.3);
+      color: var(--verde-medio);
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    /* ===== BENEFÍCIOS ===== */
+    #beneficios {
+      background: var(--verde-escuro);
+      color: var(--branco);
+    }
+
+    #beneficios .section-title { color: var(--branco); }
+    #beneficios .section-label { color: var(--verde-menta); }
+    #beneficios .section-desc { color: rgba(255,255,255,0.65); }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .benefit-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(149,213,178,0.12);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+      cursor: default;
+    }
+    .benefit-card:hover {
+      background: rgba(82,183,136,0.1);
+      border-color: rgba(149,213,178,0.35);
+      transform: translateY(-6px);
+    }
+
+    .benefit-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .benefit-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 0.8rem;
+      color: var(--verde-menta);
+    }
+
+    .benefit-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ===== COMO FUNCIONA ===== */
+    #como-funciona {
+      background: var(--creme);
+    }
+
+    .steps-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin-top: 4rem;
+      position: relative;
+    }
+
+    .steps-wrapper::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 30px;
+      bottom: 30px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--verde-claro), var(--amarelo-terra));
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      align-items: start;
+    }
+
+    .step-num {
+      width: 56px; height: 56px;
+      background: var(--verde-escuro);
+      border: 3px solid var(--verde-claro);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--verde-claro);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--verde-escuro);
+      margin-bottom: 0.5rem;
+    }
+
+    .step-body p {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: var(--texto-medio);
+    }
+
+    /* ===== DADOS / IMPACTO ===== */
+    #impacto {
+      background: linear-gradient(135deg, #f0f7f4 0%, #e8f5ed 100%);
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .impact-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: var(--branco);
+      border-radius: 20px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .impact-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(45,106,79,0.12); }
+
+    .impact-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--verde-medio);
+      line-height: 1;
+      display: block;
+    }
+
+    .impact-unit {
+      font-size: 1.4rem;
+      color: var(--verde-claro);
+    }
+
+    .impact-label {
+      font-size: 0.88rem;
+      color: var(--texto-medio);
+      margin-top: 0.6rem;
+      line-height: 1.5;
+    }
+
+    /* ===== COMPARATIVO ===== */
+    #comparativo {
+      background: var(--branco);
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 3rem;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.07);
+    }
+
+    .compare-table th {
+      padding: 1.2rem 1.5rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-align: left;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .compare-table th:first-child { background: var(--verde-escuro); color: var(--verde-menta); }
+    .compare-table th:nth-child(2) { background: #f1f5f0; color: var(--texto-medio); }
+    .compare-table th:nth-child(3) { background: var(--verde-medio); color: var(--branco); }
+
+    .compare-table td {
+      padding: 1rem 1.5rem;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      vertical-align: middle;
+    }
+
+    .compare-table tr:last-child td { border-bottom: none; }
+
+    .compare-table td:first-child {
+      font-weight: 600;
+      color: var(--verde-escuro);
+      background: rgba(26,58,42,0.03);
+    }
+
+    .compare-table td:nth-child(2) {
+      color: #888;
+      background: #fafafa;
+    }
+
+    .compare-table td:nth-child(3) {
+      color: var(--verde-medio);
+      background: rgba(45,106,79,0.05);
+      font-weight: 500;
+    }
+
+    .check { color: var(--verde-claro); font-size: 1.1rem; }
+    .cross { color: #e07070; }
+
+    /* ===== QUIZ ===== */
+    #quiz {
+      background: var(--verde-escuro);
+      color: var(--branco);
+      text-align: center;
+    }
+
+    #quiz .section-title { color: var(--branco); margin-bottom: 0.5rem; }
+    #quiz .section-label { color: var(--amarelo-terra); }
+    #quiz .section-desc { color: rgba(255,255,255,0.65); margin: 0 auto 3rem; }
+
+    .quiz-box {
+      max-width: 700px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(149,213,178,0.2);
+      border-radius: 24px;
+      padding: 2.5rem;
+    }
+
+    .quiz-progress {
+      display: flex; gap: 6px;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+    .quiz-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      transition: background 0.3s;
+    }
+    .quiz-dot.active { background: var(--verde-claro); }
+    .quiz-dot.done { background: var(--verde-menta); }
+
+    .quiz-question {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      margin-bottom: 1.8rem;
+      color: var(--branco);
+      min-height: 70px;
+    }
+
+    .quiz-options {
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+
+    .quiz-opt {
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(149,213,178,0.2);
+      border-radius: 12px;
+      padding: 0.9rem 1.3rem;
+      color: rgba(255,255,255,0.8);
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.97rem;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .quiz-opt:hover { background: rgba(82,183,136,0.12); border-color: var(--verde-claro); color: var(--branco); }
+    .quiz-opt.correct { background: rgba(82,183,136,0.25); border-color: var(--verde-claro); color: var(--verde-menta); }
+    .quiz-opt.wrong { background: rgba(220,80,80,0.15); border-color: #e07070; color: #f5a0a0; }
+
+    .quiz-feedback {
+      margin-top: 1.2rem;
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      display: none;
+    }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: rgba(82,183,136,0.15); color: var(--verde-menta); }
+    .quiz-feedback.wrong { background: rgba(220,80,80,0.1); color: #f5a0a0; }
+
+    .quiz-next {
+      margin-top: 1.5rem;
+      padding: 0.8rem 2rem;
+      background: var(--verde-claro);
+      color: var(--verde-escuro);
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+      display: none;
+    }
+    .quiz-next.show { display: inline-block; }
+    .quiz-next:hover { background: var(--verde-menta); }
+
+    .quiz-result {
+      display: none;
+      padding: 1rem;
+    }
+    .quiz-result.show { display: block; }
+    .result-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--verde-claro);
+    }
+    .result-msg { font-size: 1.1rem; color: rgba(255,255,255,0.8); margin: 0.5rem 0 1.5rem; }
+    .quiz-restart {
+      background: transparent;
+      border: 1.5px solid var(--verde-claro);
+      color: var(--verde-claro);
+      padding: 0.7rem 1.8rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .quiz-restart:hover { background: var(--verde-claro); color: var(--verde-escuro); }
+
+    /* ===== GLOSSÁRIO ===== */
+    #glossario {
+      background: var(--creme);
+    }
+
+    .glossario-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .termo-card {
+      background: var(--branco);
+      border: 1px solid rgba(45,106,79,0.1);
+      border-left: 4px solid var(--verde-claro);
+      border-radius: 12px;
+      padding: 1.4rem;
+      cursor: pointer;
+      transition: border-left-color 0.2s, transform 0.2s;
+    }
+    .termo-card:hover { border-left-color: var(--verde-medio); transform: translateX(4px); }
+
+    .termo-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--verde-escuro);
+      margin-bottom: 0.4rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .termo-card p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--texto-medio);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .termo-card.open p { max-height: 200px; }
+    .termo-card .arrow { transition: transform 0.3s; font-size: 0.75rem; color: var(--verde-claro); }
+    .termo-card.open .arrow { transform: rotate(180deg); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--texto-escuro);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 3rem 2.5rem;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--verde-menta);
+      margin-bottom: 1rem;
+    }
+
+    .footer-info {
+      font-size: 0.85rem;
+      line-height: 1.8;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .footer-tags {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .footer-tag {
+      background: rgba(82,183,136,0.1);
+      border: 1px solid rgba(82,183,136,0.2);
+      color: var(--verde-menta);
+      padding: 0.25rem 0.8rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; gap: 3rem; padding-top: 7rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: repeat(2, 1fr); }
+      .glossario-grid { grid-template-columns: 1fr; }
+      nav { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 4rem 1.5rem; }
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+      header { padding: 1rem 1.5rem; }
+      .compare-table { font-size: 0.85rem; }
+      .compare-table td, .compare-table th { padding: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">
+    <div class="logo-icon">🌿</div>
+    <span class="logo-text">AgroFloresta Brasil</span>
+  </a>
+  <nav>
+    <a href="#o-que-e">O que é</a>
+    <a href="#beneficios">Benefícios</a>
+    <a href="#impacto">Impacto</a>
+    <a href="#comparativo">Comparativo</a>
+    <a href="#quiz">Quiz</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg">
+    <div class="leaf">🌿</div>
+    <div class="leaf">🌳</div>
+    <div class="leaf">🍃</div>
+    <div class="leaf">🌱</div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+        <div class="hero-badge">Criado por Ana Lívia - 2°B - Colégio Estadual Professor Paulo Freire</div>
+      <div class="hero-badge">🏆 Concurso Agrinho 2026 - Programação</div>
+      <h1>Agrofloresta:<br><span>o futuro verde</span><br>do agronegócio</h1>
+      <p>Como sistemas agroflorestais podem transformar o agronegócio brasileiro em um modelo sustentável, produtivo e resiliente para as próximas gerações.</p>
+      <div class="hero-cta">
+        <a href="#o-que-e" class="btn-primary">Explorar o tema</a>
+        <a href="#quiz" class="btn-outline">Testar conhecimentos</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🌍</div>
+          <div class="stat-num">3ª</div>
+          <div class="stat-label">maior potencial agroflorestal do mundo — o Brasil tem mais de 12 milhões de hectares com sistemas já implantados.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🌡️</div>
+          <div class="stat-num">30<span style="font-size:1.2rem">%</span></div>
+          <div class="stat-label">menos emissão de CO₂ comparado ao agro convencional</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💧</div>
+          <div class="stat-num">60<span style="font-size:1.2rem">%</span></div>
+          <div class="stat-label">menos uso de água por área produtiva</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE É AGROFLORESTA -->
+<section id="o-que-e">
+  <div class="container">
+    <div class="section-label">Entendendo o conceito</div>
+    <h2 class="section-title">O que é a <em>Agrofloresta?</em></h2>
+    <p class="section-desc">Um sistema que integra árvores, cultivos e animais no mesmo espaço, imitando a diversidade da natureza e maximizando a produtividade com respeito ao meio ambiente.</p>
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <svg class="tree-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Solo -->
+          <ellipse cx="200" cy="360" rx="170" ry="28" fill="#7b4f2e" opacity="0.15"/>
+          <!-- Tronco -->
+          <rect x="188" y="200" width="24" height="160" rx="10" fill="#7b4f2e" opacity="0.6"/>
+          <!-- Copa principal -->
+          <ellipse cx="200" cy="160" rx="110" ry="90" fill="#2d6a4f" opacity="0.85"/>
+          <ellipse cx="200" cy="130" rx="80" ry="70" fill="#52b788" opacity="0.9"/>
+          <!-- Árvore menor esquerda -->
+          <rect x="72" y="290" width="12" height="70" rx="5" fill="#7b4f2e" opacity="0.5"/>
+          <ellipse cx="78" cy="265" rx="42" ry="35" fill="#2d6a4f" opacity="0.7"/>
+          <ellipse cx="78" cy="248" rx="28" ry="24" fill="#52b788" opacity="0.8"/>
+          <!-- Árvore menor direita -->
+          <rect x="310" y="285" width="14" height="75" rx="5" fill="#7b4f2e" opacity="0.5"/>
+          <ellipse cx="317" cy="258" rx="48" ry="38" fill="#2d6a4f" opacity="0.7"/>
+          <ellipse cx="317" cy="240" rx="32" ry="26" fill="#52b788" opacity="0.8"/>
+          <!-- Plantas rasteiras -->
+          <ellipse cx="130" cy="350" rx="35" ry="14" fill="#95d5b2" opacity="0.6"/>
+          <ellipse cx="260" cy="348" rx="30" ry="12" fill="#95d5b2" opacity="0.5"/>
+          <ellipse cx="350" cy="352" rx="22" ry="10" fill="#95d5b2" opacity="0.45"/>
+          <!-- Sol -->
+          <circle cx="340" cy="60" r="30" fill="#e9c46a" opacity="0.85"/>
+          <line x1="340" y1="20" x2="340" y2="10" stroke="#e9c46a" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+          <line x1="370" y1="40" x2="378" y2="32" stroke="#e9c46a" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+          <line x1="380" y1="60" x2="392" y2="60" stroke="#e9c46a" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+          <line x1="310" y1="40" x2="302" y2="32" stroke="#e9c46a" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+          <line x1="300" y1="60" x2="288" y2="60" stroke="#e9c46a" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+          <!-- Nuvem / chuva -->
+          <ellipse cx="80" cy="50" rx="40" ry="22" fill="#b7e4c7" opacity="0.5"/>
+          <ellipse cx="105" cy="42" rx="28" ry="18" fill="#b7e4c7" opacity="0.6"/>
+          <line x1="70" y1="78" x2="65" y2="92" stroke="#74c69d" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+          <line x1="85" y1="80" x2="80" y2="94" stroke="#74c69d" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+          <line x1="100" y1="76" x2="95" y2="90" stroke="#74c69d" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+          <!-- Seta de ciclo -->
+          <path d="M200 380 Q30 380 30 200 Q30 60 160 30" stroke="#52b788" stroke-width="2.5" fill="none" stroke-dasharray="6,4" opacity="0.5"/>
+          <polygon points="160,30 150,44 170,40" fill="#52b788" opacity="0.5"/>
+          <!-- Labels flutuantes -->
+          <text x="152" y="100" font-family="DM Sans,sans-serif" font-size="11" fill="#1a3a2a" font-weight="600" opacity="0.8">☀️ Fotossíntese</text>
+          <text x="14" y="210" font-family="DM Sans,sans-serif" font-size="10" fill="#1a3a2a" opacity="0.7">💧 Água</text>
+          <text x="310" y="320" font-family="DM Sans,sans-serif" font-size="10" fill="#1a3a2a" opacity="0.7">🌱 Cultivos</text>
+          <text x="155" y="394" font-family="DM Sans,sans-serif" font-size="10" fill="#7b4f2e" opacity="0.7">Solo Rico & Vivo</text>
+        </svg>
+      </div>
+      <div class="about-text reveal">
+        <h3>Natureza + Produção<br>em harmonia</h3>
+        <p>A agrofloresta (ou Sistema Agroflorestal — SAF) é uma prática milenar que combina <strong>árvores, arbustos, pastagens e cultivos</strong> numa mesma área. Diferente do monocultivo convencional, ela imita os processos naturais da floresta, criando um ecossistema produtivo e sustentável.</p>
+        <p>No Brasil, esse sistema é especialmente poderoso: nossos biomas (Cerrado, Mata Atlântica, Amazônia) oferecem uma riqueza de espécies nativas que, quando integradas à produção agrícola, ampliam a renda dos produtores e restauram o meio ambiente simultaneamente.</p>
+        <p>A agrofloresta não é só sobre sustentabilidade — é sobre <strong>um agronegócio mais inteligente, resiliente e lucrativo</strong> no longo prazo.</p>
+        <div class="tag-list">
+          <span class="tag">🌳 Biodiversidade</span>
+          <span class="tag">💧 Preservação hídrica</span>
+          <span class="tag">🌡️ Sequestro de carbono</span>
+          <span class="tag">🐝 Polinizadores</span>
+          <span class="tag">🌱 Solo vivo</span>
+          <span class="tag">💰 Diversificação de renda</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section id="beneficios">
+  <div class="container">
+    <div class="section-label">Por que adotar</div>
+    <h2 class="section-title">Benefícios para o <em style="color:var(--verde-menta)">agronegócio</em></h2>
+    <p class="section-desc">A agrofloresta não é um sacrifício à produtividade — é um investimento que retorna em forma de resiliência, qualidade e perenidade.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <span class="benefit-icon">🌡️</span>
+        <h3>Clima mais Estável</h3>
+        <p>As árvores regulam a temperatura do solo e do ar, protegendo cultivos de ondas de calor e geadas — eventos cada vez mais frequentes com as mudanças climáticas.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <span class="benefit-icon">💧</span>
+        <h3>Água Preservada</h3>
+        <p>Raízes profundas recarregam lençóis freáticos e reduzem a erosão. Propriedades com SAF sofrem até 60% menos com falta d'água em períodos de seca.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <span class="benefit-icon">🌱</span>
+        <h3>Solo Vivo e Fértil</h3>
+        <p>A matéria orgânica gerada pelas árvores alimenta microrganismos do solo, dispensando gradualmente fertilizantes químicos e reduzindo custos de insumos.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <span class="benefit-icon">💰</span>
+        <h3>Renda Diversificada</h3>
+        <p>Frutas, madeira, mel, plantas medicinais e créditos de carbono: múltiplos produtos numa mesma área geram fluxo de caixa distribuído ao longo do ano.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <span class="benefit-icon">🌍</span>
+        <h3>Créditos de Carbono</h3>
+        <p>Propriedades que sequestram carbono podem vender créditos no mercado internacional, transformando a floresta em uma nova fonte de receita para o produtor.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <span class="benefit-icon">📈</span>
+        <h3>Valorização do Produto</h3>
+        <p>Alimentos agroecológicos atingem preços até 3x maiores em mercados premium, orgânicos e de exportação, ampliando a margem do produtor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="container">
+    <div class="section-label">Passo a passo</div>
+    <h2 class="section-title">Como implantar um<br><em>Sistema Agroflorestal</em></h2>
+    <p class="section-desc">A transição para a agrofloresta é gradual e pode começar com pequenas áreas, escalando conforme o produtor ganha experiência.</p>
+    <div class="steps-wrapper">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Diagnóstico da propriedade</h3>
+          <p>Mapeamento do solo, relevo, disponibilidade hídrica e histórico produtivo. Identificação das espécies nativas da região e dos cultivos já existentes. Esse diagnóstico orienta quais espécies arbóreas e agrícolas combinar.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>Planejamento do sistema</h3>
+          <p>Definição das espécies a combinar (pioneiras, secundárias e climáticas), espaçamento entre plantas, corredor de biodiversidade e cronograma de implantação. Cada camada da floresta tem sua função.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Preparo e plantio</h3>
+          <p>Sem revolvimento excessivo do solo. O plantio respeita a sazonalidade e começa pelas espécies de crescimento rápido, que protegerão as mais lentas. Adubação verde e cobertura morta substituem agroquímicos.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>Manejo contínuo</h3>
+          <p>Poda estratégica, desbaste, rotação de cultivos e integração de animais (como galinhas para controle de pragas). O sistema evolui com o tempo, ganhando mais complexidade e produtividade.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h3>Colheita diversificada e certificação</h3>
+          <p>Após os primeiros 2–3 anos, o sistema começa a produzir múltiplos produtos. A certificação orgânica e agroecológica abre mercados premium, e os créditos de carbono podem ser auditados e comercializados.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO -->
+<section id="impacto">
+  <div class="container">
+    <div class="section-label">Dados & Números</div>
+    <h2 class="section-title reveal">O impacto da <em>Agrofloresta no Brasil</em></h2>
+    <p class="section-desc reveal">Números que mostram o potencial transformador dos sistemas agroflorestais para o campo brasileiro.</p>
+    <div class="impact-grid">
+      <div class="impact-card reveal">
+        <span class="impact-num">12<span class="impact-unit">M</span></span>
+        <div class="impact-label">hectares com sistemas agroflorestais já implantados no Brasil</div>
+      </div>
+      <div class="impact-card reveal">
+        <span class="impact-num">3x</span>
+        <div class="impact-label">mais espécies de animais e insetos em propriedades agroflorestais</div>
+      </div>
+      <div class="impact-card reveal">
+        <span class="impact-num">40<span class="impact-unit">t</span></span>
+        <div class="impact-label">de CO₂ sequestrado por hectare ao longo de 20 anos</div>
+      </div>
+      <div class="impact-card reveal">
+        <span class="impact-num">R$<br><span style="font-size:2rem">2,3</span>bi</span>
+        <div class="impact-label">movimentados por agricultores familiares com SAF no Brasil em 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIVO -->
+<section id="comparativo">
+  <div class="container">
+    <div class="section-label">Análise comparativa</div>
+    <h2 class="section-title reveal">Agro convencional <em>vs</em> Agrofloresta</h2>
+    <p class="section-desc reveal">Entendendo as diferenças práticas entre os dois modelos em indicadores essenciais para o produtor rural.</p>
+    <div class="reveal">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Indicador</th>
+            <th>🌾 Agro Convencional</th>
+            <th>🌳 Agrofloresta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Saúde do solo</td>
+            <td>Degradação progressiva</td>
+            <td><span class="check">✔</span> Solo vivo e regenerativo</td>
+          </tr>
+          <tr>
+            <td>Uso de agroquímicos</td>
+            <td>Alto e crescente</td>
+            <td><span class="check">✔</span> Reduzido ou nulo</td>
+          </tr>
+          <tr>
+            <td>Resiliência climática</td>
+            <td>Vulnerável a extremos</td>
+            <td><span class="check">✔</span> Alta resiliência</td>
+          </tr>
+          <tr>
+            <td>Biodiversidade</td>
+            <td><span class="cross">✗</span> Monoespecífica</td>
+            <td><span class="check">✔</span> Alta biodiversidade</td>
+          </tr>
+          <tr>
+            <td>Fontes de renda</td>
+            <td>Geralmente 1 produto</td>
+            <td><span class="check">✔</span> Múltiplas fontes</td>
+          </tr>
+          <tr>
+            <td>Emissão de carbono</td>
+            <td>Emissora líquida</td>
+            <td><span class="check">✔</span> Sequestra carbono</td>
+          </tr>
+          <tr>
+            <td>Custo de insumos</td>
+            <td>Alto e volátil</td>
+            <td><span class="check">✔</span> Reduz com o tempo</td>
+          </tr>
+          <tr>
+            <td>Retorno no curto prazo</td>
+            <td><span class="check">✔</span> Imediato</td>
+            <td>Gradual (2–5 anos)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="container">
+    <div class="section-label">Teste seus conhecimentos</div>
+    <h2 class="section-title">Quiz: Agrofloresta<br><em style="color:var(--amarelo-terra)">& Sustentabilidade</em></h2>
+    <p class="section-desc">Responda 5 perguntas sobre agroflorestas e descubra o quanto você já sabe sobre o futuro do agronegócio sustentável.</p>
+    <div class="quiz-box">
+      <div class="quiz-progress" id="quizProgress"></div>
+      <div id="quizArea">
+        <div class="quiz-question" id="quizQ"></div>
+        <div class="quiz-options" id="quizOpts"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <button class="quiz-next" id="quizNext" onclick="nextQuestion()">Próxima pergunta →</button>
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <div class="result-score" id="resultScore"></div>
+        <div class="result-msg" id="resultMsg"></div>
+        <button class="quiz-restart" onclick="restartQuiz()">🔄 Tentar novamente</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOSSÁRIO -->
+<section id="glossario">
+  <div class="container">
+    <div class="section-label">Vocabulário essencial</div>
+    <h2 class="section-title reveal">Glossário<br><em>Agroflorestal</em></h2>
+    <p class="section-desc reveal">Termos fundamentais para entender o universo da agrofloresta e do agronegócio sustentável.</p>
+    <div class="glossario-grid" id="glossarioGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🌳 AgroFloresta Brasil</div>
+  <p class="footer-info">
+    Site desenvolvido para o <strong style="color:var(--verde-menta)">Concurso Agrinho 2026</strong> — Categoria Programação.<br>
+    Tema: <em>"Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"</em><br>
+    Programa Agrinho | SEED-PR & Sistema Faep/Senar-PR
+  </p>
+  <div class="footer-tags">
+    <span class="footer-tag">HTML5</span>
+    <span class="footer-tag">CSS3</span>
+    <span class="footer-tag">JavaScript</span>
+    <span class="footer-tag">Agrinho 2026</span>
+    <span class="footer-tag">Sustentabilidade</span>
+    <span class="footer-tag">Agrofloresta</span>
+  </div>
+</footer>
+
+<script>
+  // ===== SCROLL REVEAL =====
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        const delay = Array.from(e.target.parentElement.children).indexOf(e.target) * 80;
+        setTimeout(() => e.target.classList.add('visible'), delay);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // ===== QUIZ =====
+  const questions = [
+    {
+      q: "O que é um Sistema Agroflorestal (SAF)?",
+      opts: [
+        "Uma técnica de irrigação em grande escala",
+        "A integração de árvores, cultivos e/ou animais numa mesma área de forma sustentável",
+        "O uso de drones para monitorar plantações",
+        "Um tipo de fertilizante orgânico"
+      ],
+      correct: 1,
+      feedback: "✅ Exato! O SAF combina espécies arbóreas com cultivos agrícolas e/ou animais no mesmo espaço, imitando a diversidade da floresta e gerando múltiplos benefícios."
+    },
+    {
+      q: "Qual é uma das principais vantagens econômicas da agrofloresta para o produtor rural?",
+      opts: [
+        "Redução imediata de todos os custos no primeiro ano",
+        "Dependência de um único produto para geração de renda",
+        "Diversificação de renda com múltiplos produtos na mesma área",
+        "Elimina a necessidade de mão de obra"
+      ],
+      correct: 2,
+      feedback: "✅ Correto! A agrofloresta produz frutas, madeira, mel, plantas medicinais e ainda gera créditos de carbono — múltiplas fontes de renda numa mesma propriedade."
+    },
+    {
+      q: "Como a agrofloresta contribui para o enfrentamento das mudanças climáticas?",
+      opts: [
+        "Aumentando o uso de agroquímicos para maior produtividade",
+        "Sequestro de carbono e redução das emissões de gases estufa",
+        "Concentrando a produção em grandes monoculturas",
+        "Desmatando áreas para aumentar a lavoura"
+      ],
+      correct: 1,
+      feedback: "✅ Isso mesmo! As árvores nos sistemas agroflorestais sequestram CO₂ da atmosfera e estocam carbono no solo, contribuindo ativamente para o equilíbrio climático."
+    },
+    {
+      q: "Em comparação ao agro convencional, o solo em sistemas agroflorestais tende a:",
+      opts: [
+        "Se degradar mais rapidamente pelo peso das árvores",
+        "Precisar de mais fertilizantes químicos",
+        "Ficar mais fértil e vivo, com maior atividade microbiana",
+        "Perder toda a matéria orgânica"
+      ],
+      correct: 2,
+      feedback: "✅ Perfeito! A matéria orgânica das folhas e galhos deposita nutrientes no solo, alimentando microrganismos benéficos que aumentam a fertilidade natural."
+    },
+    {
+      q: "O tema do Concurso Agrinho 2026 é:",
+      opts: [
+        "\"Campo Digital: tecnologia para o agro\"",
+        "\"Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente\"",
+        "\"Do campo à cidade: colhendo oportunidades\"",
+        "\"Agricultura 4.0 e o futuro do Paraná\""
+      ],
+      correct: 1,
+      feedback: "✅ Certo! O tema de 2026 desafia os estudantes a refletirem sobre o equilíbrio entre produção agropecuária e preservação ambiental — exatamente o que a agrofloresta representa!"
+    }
+  ];
+
+  let current = 0, score = 0, answered = false;
+
+  function initQuiz() {
+    current = 0; score = 0; answered = false;
+    document.getElementById('quizArea').style.display = 'block';
+    document.getElementById('quizResult').classList.remove('show');
+    renderQuestion();
+  }
+
+  function renderProgress() {
+    const p = document.getElementById('quizProgress');
+    p.innerHTML = questions.map((_, i) => {
+      let cls = 'quiz-dot';
+      if (i < current) cls += ' done';
+      else if (i === current) cls += ' active';
+      return `<div class="${cls}"></div>`;
+    }).join('');
+  }
+
+  function renderQuestion() {
+    renderProgress();
+    answered = false;
+    const q = questions[current];
+    document.getElementById('quizQ').textContent = q.q;
+    document.getElementById('quizOpts').innerHTML = q.opts.map((o, i) =>
+      `<button class="quiz-opt" onclick="answer(${i})">${o}</button>`
+    ).join('');
+    const fb = document.getElementById('quizFeedback');
+    fb.className = 'quiz-feedback';
+    fb.textContent = '';
+    const nx = document.getElementById('quizNext');
+    nx.classList.remove('show');
+    nx.textContent = current === questions.length - 1 ? 'Ver resultado 🏆' : 'Próxima pergunta →';
+  }
+
+  function answer(idx) {
+    if (answered) return;
+    answered = true;
+    const q = questions[current];
+    const opts = document.querySelectorAll('.quiz-opt');
+    opts.forEach(o => o.style.pointerEvents = 'none');
+    opts[idx].classList.add(idx === q.correct ? 'correct' : 'wrong');
+    if (idx !== q.correct) opts[q.correct].classList.add('correct');
+    if (idx === q.correct) score++;
+    const fb = document.getElementById('quizFeedback');
+    fb.textContent = q.feedback;
+    fb.className = 'quiz-feedback show ' + (idx === q.correct ? 'correct' : 'wrong');
+    document.getElementById('quizNext').classList.add('show');
+  }
+
+  function nextQuestion() {
+    current++;
+    if (current >= questions.length) showResult();
+    else renderQuestion();
+  }
+
+  function showResult() {
+    document.getElementById('quizArea').style.display = 'none';
+    const res = document.getElementById('quizResult');
+    res.classList.add('show');
+    document.getElementById('resultScore').textContent = `${score}/${questions.length}`;
+    const msgs = [
+      "Continue estudando! A agrofloresta tem muito a ensinar 🌱",
+      "Bom começo! Explore mais seções deste site 🌿",
+      "Muito bem! Você está entendendo o tema 🌳",
+      "Ótimo resultado! Você domina o assunto 🏆",
+      "Perfeito! Você é um especialista em agrofloresta! 🎉"
+    ];
+    document.getElementById('resultMsg').textContent = msgs[score] || msgs[4];
+    renderProgress();
+  }
+
+  function restartQuiz() { initQuiz(); }
+  initQuiz();
+
+  // ===== GLOSSÁRIO =====
+  const termos = [
+    { t: "SAF — Sistema Agroflorestal", d: "Prática que integra árvores, arbustos, cultivos herbáceos e/ou animais numa mesma área de forma sinérgica, promovendo biodiversidade e sustentabilidade produtiva." },
+    { t: "Sequestro de Carbono", d: "Processo pelo qual as plantas capturam CO₂ da atmosfera e armazenam o carbono no caule, raízes e solo, ajudando a reduzir o efeito estufa." },
+    { t: "Biodiversidade", d: "Variedade de espécies de seres vivos (plantas, animais, fungos, bactérias) que coexistem em um ecossistema. Sistemas agroflorestais têm alta biodiversidade." },
+    { t: "Adubação Verde", d: "Técnica que consiste em plantar espécies fixadoras de nitrogênio (como leguminosas) para enriquecer o solo naturalmente, sem fertilizantes químicos." },
+    { t: "Crédito de Carbono", d: "Certificado que representa a redução de 1 tonelada de CO₂ da atmosfera. Propriedades com SAF podem gerar e vender esses créditos no mercado financeiro." },
+    { t: "Agroecologia", d: "Ciência que estuda sistemas agrícolas sustentáveis a partir de princípios ecológicos, integrando saberes tradicionais e tecnológicos para reduzir impactos ambientais." },
+    { t: "Espécies Pioneiras", d: "Plantas de crescimento rápido que colonizam primeiras áreas alteradas e criam condições (sombra, umidade, matéria orgânica) para espécies mais exigentes se estabelecerem." },
+    { t: "Resiliência Climática", d: "Capacidade de um sistema produtivo de resistir, se adaptar e se recuperar de eventos climáticos extremos, como secas, chuvas intensas e ondas de calor." },
+  ];
+
+  document.getElementById('glossarioGrid').innerHTML = termos.map(t => `
+    <div class="termo-card" onclick="toggleTermo(this)">
+      <h4>${t.t} <span class="arrow">▼</span></h4>
+      <p>${t.d}</p>
+    </div>
+  `).join('');
+
+  function toggleTermo(el) {
+    el.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
